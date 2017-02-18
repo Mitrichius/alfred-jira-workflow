@@ -7,14 +7,9 @@ import json
 import sys
 import os.path
 
-PROJECTS = ["http://jira-old.freewheel.tv/browse/CLIENTHELP",
-            "http://jira-old.freewheel.tv/browse/MRM",
-            "http://jira-old.freewheel.tv/browse/FDB",
-            "http://jira-old.freewheel.tv/browse/QOS",
-            "http://jira.freewheel.tv/browse/INK",
-            "http://jira.freewheel.tv/browse/OPP",
-            "http://jira.freewheel.tv/browse/ESC",
-            "http://jira.freewheel.tv/browse/OPS"]
+JIRA_URL = "http://jira-old.freewheel.tv/browse/"
+PROJECTS = ["CLIENTHELP", "MRM", "FDB", "QOS",
+            "INK", "OPP", "ESC", "OPS"]
 
 # load all projects
 # if os.path.exists("projects.json"):
@@ -24,16 +19,17 @@ PROJECTS = ["http://jira-old.freewheel.tv/browse/CLIENTHELP",
 #         PROJECTS = []
 #         for project in results:
 #             PROJECTS.append(project['key'])
-PROJECTS.sort()
 
 # generate options for ticket number
 if len(sys.argv) == 2:
     query = urllib.quote(sys.argv[1])
-
     feeds = Feedback()
-
+if query.isdigit():
     for project in PROJECTS:
-        ticket_url = "%s-%s" % (project, query)
-        feeds.add_item(title="%s-%s" % (project, query), subtitle=ticket_url, valid='YES', arg=ticket_url, icon='icon.png')
-
-    print feeds
+        ticket_url = "%s%s-%s" % (JIRA_URL, project, query)
+        feeds.add_item(title=ticket_url, subtitle=ticket_url, valid='YES', arg=ticket_url, icon='icon.png')
+else:
+    ticket_url = "%s%s" % (JIRA_URL, query)
+    feeds.add_item(title=ticket_url, subtitle=ticket_url, valid='YES', arg=ticket_url, icon='icon.png')
+print feeds
+    

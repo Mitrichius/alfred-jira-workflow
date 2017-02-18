@@ -1,6 +1,6 @@
-# Alfred JIRA Workflow
+# Alfred JIRA Workflow Fork
 
-this workflow allows you to open JIRA ticket by inputing ticket number directly.
+this workflow allows you to open JIRA ticket by inputing ticket number directly
 
 Alfred > jira 1234
 
@@ -8,6 +8,10 @@ Alfred > jira 1234
 
 All possible tickets will be shown, and you can select any of them and open it in default browser.
 
+# Changes in Fork
+1. Simplified projects' adding  (jira url as separate constant)
+2. Removed projects' sorting (for prioritizing projects) 
+3. Added possibility to insert full jira key (Alfred > jira TEST-8)
 
 ## Step.1 Install workflow to your Alfred
 
@@ -21,17 +25,14 @@ Alfred --> Prefereces --> Workflow --> FreeWheel JIRA
 
 ![image](configure.jpg)
 
+EDIT JIRA_URL in jira.py file:
+
+> JIRA_URL = "http://jira-old.freewheel.tv/browse/"
 
 Edit PROJECTS in jira.py file:
 
-> PROJECTS = ["http://jira-old.freewheel.tv/browse/CLIENTHELP",
->             "http://jira-old.freewheel.tv/browse/MRM",
->             "http://jira-old.freewheel.tv/browse/FDB",
->             "http://jira-old.freewheel.tv/browse/QOS",
->             "http://jira.freewheel.tv/browse/INK",
->             "http://jira.freewheel.tv/browse/OPP",
->             "http://jira.freewheel.tv/browse/ESC",
->             "http://jira.freewheel.tv/browse/OPS"]
+> PROJECTS = ["CLIENTHELP", "MRM", "FDB", "QOS",
+>             "INK", "OPP", "ESC", "OPS"]
 
 Save it.
 
